@@ -7,12 +7,7 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Flag flag = new Flag();
-		flag.runTest2();
-//		for (int i = 0; i < 32; i++) {
-//			System.out.println("index: " + i);
-//			flag.runTest(i);
-//		}
+		//IntFlag flag = new IntFlag();
 
 	}
 	
