@@ -6,9 +6,8 @@ public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		//IntFlag flag = new IntFlag();
 
+		KeyInfo.runTest();
 	}
 	
 	
