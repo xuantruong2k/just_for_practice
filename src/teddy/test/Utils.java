@@ -13,4 +13,9 @@ public class Utils {
 		String str = String.format("%64s", Long.toBinaryString(value)).replace(' ', '0');		
 		return str;
 	}
+	
+	public static String formatInt2Str(int value, int numOfChar) {
+		String f = "%" + numOfChar + "s";
+		return String.format(f, value);
+	}
 }

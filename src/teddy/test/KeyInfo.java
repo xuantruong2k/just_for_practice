@@ -10,7 +10,17 @@ import java.util.Base64;
 
 public class KeyInfo {
 
-	public static String getPublicKeyString(String keyStoreFile, String password, String alias) {
+	private static KeyInfo sharedInstance = null;
+	
+	public static KeyInfo getInstance() {
+		
+		if (sharedInstance == null)
+			sharedInstance = new KeyInfo();
+		
+		return sharedInstance;
+	}
+	
+	public String getPublicKeyString(String keyStoreFile, String password, String alias) {
 		try {
 
 			FileInputStream is = new FileInputStream(keyStoreFile);
@@ -37,12 +47,12 @@ public class KeyInfo {
 		return "null";
 	}
 	
-	public static void runTest() {
-//		String keyStoreFile = "";
-//		String password = "";
-//		String alias = "";
+	public void runTest() {
+		String keyStoreFile = "";
+		String password = "";
+		String alias = "";
 		
-//		String publicKeyString = KeyInfo.getPublicKeyString(keyStoreFile, password, alias);
-//		System.out.println("public key string = \n" + publicKeyString);
+		String publicKeyString = getPublicKeyString(keyStoreFile, password, alias);
+		System.out.println("public key string = \n" + publicKeyString);
 	}
 }
