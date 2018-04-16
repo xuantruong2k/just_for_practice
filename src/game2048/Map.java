@@ -1,5 +1,8 @@
 package game2048;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import teddy.test.Utils;
 
 public class Map {
@@ -64,6 +67,37 @@ public class Map {
 		data[15] = GameConst.NUMBER_4;
 	}
 
+	public int[] generateRandomPosForNextNumber(ArrayList<Integer> availablePos) {
+		int len = availablePos.size();
+		int maxNumber = len > 2 ? 2 : 1;
+		int[] result = new int[maxNumber];
+
+		Random rand = new Random();
+
+		// assign the first position
+		int pos = rand.nextInt(len - 1);
+		result[0] = availablePos.get(pos).intValue();
+
+		for (int i = 1; i < maxNumber; i++) {
+			do {
+				pos = rand.nextInt(len - 1);
+				result[i] = availablePos.get(pos).intValue();
+			} while (result[i - 1] == result[i]);
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<Integer> findAvailablePos() {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for (int i = 0; i < data.length; i++) {
+			if (data[i] == GameConst.NUMBER_NONE)
+				result.add((Integer)i);
+		}
+		
+		return result;
+	}
+
 	// make sure this function is call after passing the conditions in canMerge
 	public void merge(int pos1, int pos2) {
 		data[pos1] = nextNumber(data[pos1]); // set the next number to idx1
@@ -107,6 +141,21 @@ public class Map {
 		return GameConst.NUMBER_NONE;
 	}
 
+	public void update() {
+		ArrayList<Integer> availablePos = findAvailablePos();
+		if (availablePos.size() <= 1) {
+			// end game
+		} else {
+			// generate the random '2' to the map
+			int[] randomPos = generateRandomPosForNextNumber(availablePos);			
+			for (int i = 0; i < randomPos.length; i++) {
+				data[randomPos[i]] = GameConst.NUMBER_2;
+			}
+			
+			// then wait for user 's move
+		}
+	}
+	
 	public void updateMap(int dir) {
 		if (dir == GameConst.DIRECTION_LEFT)
 			moveLeft();
@@ -127,7 +176,7 @@ public class Map {
 				int currIdx = getIndex(j, i);
 				if (isEmpty(currIdx))
 					continue;
-				
+
 				for (int k = j + 1; k < width; k++) {
 					int nextIdx = getIndex(k, i);
 					if (!isEmpty(nextIdx)) {
@@ -163,13 +212,13 @@ public class Map {
 				int a = 0;
 				int b = a;
 			}
-			
+
 			// check and merge value on each cell
 			for (int j = width - 1; j > 0; j--) {
 				int currIdx = getIndex(j, i);
 				if (isEmpty(currIdx))
 					continue;
-				
+
 				for (int k = j - 1; k >= 0; k--) {
 					int nextIdx = getIndex(k, i);
 					if (!isEmpty(nextIdx)) {
@@ -206,7 +255,7 @@ public class Map {
 				int currIdx = getIndex(i, j);
 				if (isEmpty(currIdx))
 					continue;
-				
+
 				for (int k = j + 1; k < height; k++) {
 					int nextIdx = getIndex(i, k);
 					if (!isEmpty(nextIdx)) {
@@ -220,11 +269,11 @@ public class Map {
 
 			// move all the non-empty cell to left
 			for (int j = 0; j < height - 1; j++) {
-				//int currIdx = getIndex(j, i);
+				// int currIdx = getIndex(j, i);
 				int currIdx = getIndex(i, j);
 				if (isEmpty(currIdx)) {
 					for (int k = j + 1; k < height; k++) {
-						//int nextIdx = getIndex(k, i);
+						// int nextIdx = getIndex(k, i);
 						int nextIdx = getIndex(i, k);
 						if (!isEmpty(nextIdx)) {
 							data[currIdx] = data[nextIdx];
@@ -238,13 +287,13 @@ public class Map {
 	}
 
 	private void moveDown() {
-		for (int i = 0; i < width; i++) {			
+		for (int i = 0; i < width; i++) {
 			// check and merge value on each cell
 			for (int j = height - 1; j > 0; j--) {
 				int currIdx = getIndex(i, j);
 				if (isEmpty(currIdx))
 					continue;
-				
+
 				for (int k = j - 1; k >= 0; k--) {
 					int nextIdx = getIndex(i, k);
 					if (!isEmpty(nextIdx)) {
@@ -261,7 +310,7 @@ public class Map {
 				int currIdx = getIndex(i, j);
 				if (isEmpty(currIdx)) {
 					for (int k = j - 1; k >= 0; k--) {
-						//int nextIdx = getIndex(k, i);
+						// int nextIdx = getIndex(k, i);
 						int nextIdx = getIndex(i, k);
 						if (!isEmpty(nextIdx)) {
 							data[currIdx] = data[nextIdx];
