@@ -13,7 +13,8 @@ public class main {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = "";
-		while (!input.equals("q")) {			
+		boolean gameContinue = true;
+		while (!input.equals("q") && gameContinue) {			
 			try {
 				System.out.print("\nEnter something: ");
 				input = br.readLine();
@@ -30,6 +31,9 @@ public class main {
 				
 				if (dir != GameConst.DIRECTION_NONE) {
 					m.updateMap(dir);
+					
+					gameContinue = m.update();
+					
 					m.printMap();
 				}
 					
@@ -37,6 +41,8 @@ public class main {
 				System.err.println(e);
 			}
 		}
+		
+		System.out.println("END GAME");
 	}
 	
 	

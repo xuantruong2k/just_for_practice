@@ -71,16 +71,21 @@ public class Map {
 		int len = availablePos.size();
 		int maxNumber = len > 2 ? 2 : 1;
 		int[] result = new int[maxNumber];
+		
+		if (maxNumber == 1) {
+			int x = 0;
+			int y = x;
+		}
 
 		Random rand = new Random();
 
 		// assign the first position
-		int pos = rand.nextInt(len - 1);
+		int pos = rand.nextInt(len);
 		result[0] = availablePos.get(pos).intValue();
 
 		for (int i = 1; i < maxNumber; i++) {
 			do {
-				pos = rand.nextInt(len - 1);
+				pos = rand.nextInt(len);
 				result[i] = availablePos.get(pos).intValue();
 			} while (result[i - 1] == result[i]);
 		}
@@ -141,10 +146,10 @@ public class Map {
 		return GameConst.NUMBER_NONE;
 	}
 
-	public void update() {
+	public boolean update() {
 		ArrayList<Integer> availablePos = findAvailablePos();
-		if (availablePos.size() <= 1) {
-			// end game
+		if (availablePos.size() <= 0) {
+			return false; // end game
 		} else {
 			// generate the random '2' to the map
 			int[] randomPos = generateRandomPosForNextNumber(availablePos);			
@@ -153,6 +158,7 @@ public class Map {
 			}
 			
 			// then wait for user 's move
+			return true; // game is not end
 		}
 	}
 	
