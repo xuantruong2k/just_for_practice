@@ -11,7 +11,7 @@ public class Map {
 	private int height;
 	private int[] data;
 	
-	private static Map sharedInstance;
+	private static Map sharedInstance = null;
 	
 	public static Map getInstance() {
 		if (sharedInstance == null) {
@@ -236,11 +236,6 @@ public class Map {
 
 	private void moveRight() {
 		for (int i = 0; i < height; i++) {
-
-			if (i == 2) {
-				int a = 0;
-				int b = a;
-			}
 
 			// check and merge value on each cell
 			for (int j = width - 1; j > 0; j--) {
