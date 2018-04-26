@@ -15,7 +15,7 @@ public class Map {
 	
 	public static Map getInstance() {
 		if (sharedInstance == null) {
-			sharedInstance = new Map(4, 4);
+			sharedInstance = new Map(4, 4); // set default width and height of map
 		}
 		
 		return sharedInstance;
@@ -23,6 +23,8 @@ public class Map {
 	
 	public static Map create(int w, int h) {
 		if (sharedInstance == null) {
+			sharedInstance = new Map(w, h);
+		} else if (sharedInstance.getWidth() != w || sharedInstance.getHeight() != h) {
 			sharedInstance = new Map(w, h);
 		}
 		
@@ -36,6 +38,14 @@ public class Map {
 		initMap();
 
 		generateMap();
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
 	}
 
 	private void initMap() {
