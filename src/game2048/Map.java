@@ -9,9 +9,27 @@ public class Map {
 
 	private int width;
 	private int height;
-	int[] data;
+	private int[] data;
+	
+	private static Map sharedInstance;
+	
+	public static Map getInstance() {
+		if (sharedInstance == null) {
+			sharedInstance = new Map(4, 4);
+		}
+		
+		return sharedInstance;
+	}
+	
+	public static Map create(int w, int h) {
+		if (sharedInstance == null) {
+			sharedInstance = new Map(w, h);
+		}
+		
+		return sharedInstance;
+	}
 
-	public Map(int w, int h) {
+	private Map(int w, int h) {
 		width = w;
 		height = h;
 
@@ -41,7 +59,7 @@ public class Map {
 		}
 	}
 
-	public int getIndex(int xPos, int yPos) {
+	private int getIndex(int xPos, int yPos) {
 		return (yPos * width + xPos);
 	}
 
@@ -71,11 +89,6 @@ public class Map {
 		int len = availablePos.size();
 		int maxNumber = len > 2 ? 2 : 1;
 		int[] result = new int[maxNumber];
-		
-		if (maxNumber == 1) {
-			int x = 0;
-			int y = x;
-		}
 
 		Random rand = new Random();
 
@@ -103,7 +116,7 @@ public class Map {
 		return result;
 	}
 
-	// make sure this function is call after passing the conditions in canMerge
+	// make sure this function is called after passing the conditions in canMerge
 	public void merge(int pos1, int pos2) {
 		data[pos1] = nextNumber(data[pos1]); // set the next number to idx1
 		data[pos2] = GameConst.NUMBER_NONE; // set the 'None'
@@ -273,7 +286,7 @@ public class Map {
 				}
 			}
 
-			// move all the non-empty cell to left
+			// move all the non-empty cell to up
 			for (int j = 0; j < height - 1; j++) {
 				// int currIdx = getIndex(j, i);
 				int currIdx = getIndex(i, j);
@@ -311,7 +324,7 @@ public class Map {
 				}
 			}
 
-			// move all the non-empty cell to right
+			// move all the non-empty cell to down
 			for (int j = height - 1; j > 0; j--) {
 				int currIdx = getIndex(i, j);
 				if (isEmpty(currIdx)) {

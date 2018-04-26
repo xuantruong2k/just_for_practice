@@ -8,7 +8,8 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Map m = new Map(4, 4);
+		//Map m = new Map(4, 4);
+		Map m = Map.create(4, 4);
 		m.printMap();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
