@@ -155,4 +155,34 @@ public class Solution {
 		System.out.println("Index = " + searchLastIndexInDuplicateSortedArray(array, 13));
 		System.out.println("Index = " + searchFirstIndexInDuplicateSortedArray(array, 1));
 	}
+
+	public void permute(String prefix, String tail) {
+		if (tail.equals("")) {
+			System.out.println(prefix);
+		} else {
+			for (int i = 0; i < tail.length(); i++) {
+				prefix += tail.charAt(i);
+				
+				String tmp = new String(tail);
+				
+				tail = removeCharAt(tail, i);			
+				
+				permute(prefix, tail);
+				
+				tail = tmp;
+			}
+		}
+	}
+	
+	private String removeCharAt(String str, int index) {
+		String prefix = "";
+		String tail = "";
+		
+		if (index > 0)
+			prefix = str.substring(0, index-1);
+		if (index < str.length() - 1)
+			tail = str.substring(index + 1);
+		
+		return prefix + tail;
+	}
 }

@@ -7,14 +7,26 @@ import java.util.Vector;
 
 import teddy.test.thread.*;
 
-public class main {
+
+public class main {	
+
 	
-	private int _flag;
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		StringBuilder s1 = new StringBuilder("Java");
+        String s2 = "Love";
+        s1.append(s2);
+        s1.substring(4);
+        int foundAt = s1.indexOf(s2);
+        System.out.println(foundAt);
+		
+//		Solution instance = Solution.getInstance();
+//		instance.permute("", "ab");
 
-		//KeyInfo.getInstance().runTest();
+		
+		// TODO Auto-generated method stub		
+
+		//KeyInfo.getInstance().runTest();		
 		
 //		PrintMachine pm = new PrintMachine();
 //		
@@ -44,28 +56,28 @@ public class main {
 //		t3.start();
 		
 		/// test thread in bank account
-		BankAccount ba = new BankAccount("truong", 10000);
-		
-		Thread t4 = new Thread() {
-			public void run() {
-				ba.widthdrawalSync(3000);
-			}
-		};
-		
-		Thread t5 = new Thread() {
-			public void run() {
-				ba.widthdrawalSync(5000);
-			}
-		};
-		
-		Thread t6 = new Thread() {
-			public void run() {
-				ba.widthdrawalSync(6000);
-			}
-		};
-		
-		t4.start();
-		t5.start();
-		t6.start();
+//		BankAccount ba = new BankAccount("truong", 10000);
+//		
+//		Thread t4 = new Thread() {
+//			public void run() {
+//				ba.widthdrawalSync(3000);
+//			}
+//		};
+//		
+//		Thread t5 = new Thread() {
+//			public void run() {
+//				ba.widthdrawalSync(5000);
+//			}
+//		};
+//		
+//		Thread t6 = new Thread() {
+//			public void run() {
+//				ba.widthdrawalSync(6000);
+//			}
+//		};
+//		
+//		t4.start();
+//		t5.start();
+//		t6.start();
 	}
 }
