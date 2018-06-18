@@ -9,11 +9,17 @@ import teddy.test.thread.*;
 
 public class main {
 	
-	private int _flag;
 
 	public static void main(String[] args) {
+		
+		Solution sol = Solution.getInstance();
+		sol.permute("ABCD");
+		
 		// TODO Auto-generated method stub
 
+//		Solution instance = Solution.getInstance();
+//		instance.runSearchIndexInSortedArray();
+		
 		//KeyInfo.getInstance().runTest();
 		
 //		PrintMachine pm = new PrintMachine();
@@ -44,28 +50,28 @@ public class main {
 //		t3.start();
 		
 		/// test thread in bank account
-		BankAccount ba = new BankAccount("truong", 10000);
-		
-		Thread t4 = new Thread() {
-			public void run() {
-				ba.widthdrawalSync(3000);
-			}
-		};
-		
-		Thread t5 = new Thread() {
-			public void run() {
-				ba.widthdrawalSync(5000);
-			}
-		};
-		
-		Thread t6 = new Thread() {
-			public void run() {
-				ba.widthdrawalSync(6000);
-			}
-		};
-		
-		t4.start();
-		t5.start();
-		t6.start();
+//		BankAccount ba = new BankAccount("truong", 10000);
+//		
+//		Thread t4 = new Thread() {
+//			public void run() {
+//				ba.widthdrawalSync(3000);
+//			}
+//		};
+//		
+//		Thread t5 = new Thread() {
+//			public void run() {
+//				ba.widthdrawalSync(5000);
+//			}
+//		};
+//		
+//		Thread t6 = new Thread() {
+//			public void run() {
+//				ba.widthdrawalSync(6000);
+//			}
+//		};
+//		
+//		t4.start();
+//		t5.start();
+//		t6.start();
 	}
 }

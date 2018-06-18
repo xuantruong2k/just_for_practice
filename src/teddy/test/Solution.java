@@ -150,9 +150,23 @@ public class Solution {
 	}
 
 	public void runSearchIndexInSortedArray() {
-	// 					0, 1, 2, 3, 4, 5, 6, 7, 8
+	// 					0, 1, 2, 3, 4,  5,  6,  7,  8
 		int[] array = { 1, 1, 1, 7, 9, 13, 13, 13, 13 };
 		System.out.println("Index = " + searchLastIndexInDuplicateSortedArray(array, 13));
 		System.out.println("Index = " + searchFirstIndexInDuplicateSortedArray(array, 1));
+	}
+
+	public void permute(String str) {
+		permute("", str);
+	}
+	
+	private void permute(String prefix, String remain) {
+		if (remain.length() <= 1) {
+			System.out.println("" + (prefix + remain));
+		} else {
+			for (int i = 0; i < remain.length(); i++) {
+				permute(prefix + remain.charAt(i), remain.substring(0, i) + remain.substring(i+1));
+			}
+		}
 	}
 }
