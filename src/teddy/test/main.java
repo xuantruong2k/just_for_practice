@@ -8,10 +8,9 @@ import java.util.Vector;
 import teddy.test.thread.*;
 
 public class main {
-	
 
+	
 	public static void main(String[] args) {
-		
 		Solution sol = Solution.getInstance();
 		sol.permute("ABCD");
 		
