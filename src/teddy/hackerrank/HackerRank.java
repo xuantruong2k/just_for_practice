@@ -82,4 +82,65 @@ public class HackerRank {
     	
     	return result;
     }
+     
+    // https://www.hackerrank.com/challenges/2d-array/problem
+    // 2D array - find the maximum 'hourglass' sum
+    public static int findMaxiumHourglass(int[][] arr) {
+    	int maxSum = Integer.MIN_VALUE;
+    	for (int i = 0; i < arr.length - 2; i++) {
+    		for (int j = 0; j < arr[i].length - 2; j++ ) {
+    			int sum = 0;    			
+    			// first line
+    			sum += arr[i][j];
+    			sum += arr[i][j+1];
+    			sum += arr[i][j+2];
+    			// second line
+    			sum += arr[i+1][j+1];
+    			// third line
+    			sum += arr[i+2][j];
+    			sum += arr[i+2][j+1];
+    			sum += arr[i+2][j+2];
+    			
+    			if (sum > maxSum) {
+    				maxSum = sum;
+    			}
+    		}
+    	}
+    	return maxSum;
+    }
+    
+    // https://www.hackerrank.com/challenges/between-two-sets/problem
+    // Between 2 Set
+   public static int getTotalX(int [] a, int[] b) {
+	   int ret = 0;
+	   
+	   int min = a[a.length - 1];
+	   int max = b[b.length - 1];
+	   
+	   // loop for every element in [min, max] with the increase step min
+	   for (int val = min; val <= max; val += min) {
+		   boolean pass = true;
+		   
+		   // all elements of the first array are all factors of 'val'?
+		   for (int j = 0; j < a.length && pass; j++) {
+			   if (val % a[j] != 0) {
+				   pass = false;
+				   break;
+			   }
+		   }
+		   
+		   // 'val' is a factor of all elements of t he second array?
+		   for (int j = 0; j < b.length && pass; j++) {
+			   if (b[j] % val != 0) {
+				   pass = false;
+			   }
+		   }
+		   
+		   // if pass is true mean 'val' is the factor
+		   if (pass)
+			   ret++;
+	   }
+	   
+	   return ret;
+   }
 }
