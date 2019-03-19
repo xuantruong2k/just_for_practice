@@ -6,6 +6,8 @@ import java.text.*;
 import java.util.*;
 import java.util.regex.*;
 
+import teddy.test.Utils;
+
 public class HackerRank {
 
 	private static final Scanner scanner = new Scanner(System.in);
@@ -27,10 +29,14 @@ public class HackerRank {
 		// }
 		// System.out.println(evenStr + " " + oddStr);
 		// }
-		String s = "welcometojava";
-		int k = 3;
-		String str = getSmallestAndLargest(s, k);
-		System.out.println(str);
+		
+//		String s = "welcometojava";
+//		int k = 3;
+//		String str = getSmallestAndLargest(s, k);
+//		System.out.println(str);
+		
+		int[] arr = {5, 4, 4, 2, 2, 8};
+		int[] ret = cutTheSticks(arr);
 	}
 
     public static String getSmallestAndLargest(String s, int k) {
@@ -109,38 +115,71 @@ public class HackerRank {
     	return maxSum;
     }
     
-    // https://www.hackerrank.com/challenges/between-two-sets/problem
-    // Between 2 Set
-   public static int getTotalX(int [] a, int[] b) {
-	   int ret = 0;
-	   
-	   int min = a[a.length - 1];
-	   int max = b[b.length - 1];
-	   
-	   // loop for every element in [min, max] with the increase step min
-	   for (int val = min; val <= max; val += min) {
-		   boolean pass = true;
-		   
-		   // all elements of the first array are all factors of 'val'?
-		   for (int j = 0; j < a.length && pass; j++) {
-			   if (val % a[j] != 0) {
-				   pass = false;
-				   break;
-			   }
-		   }
-		   
-		   // 'val' is a factor of all elements of t he second array?
-		   for (int j = 0; j < b.length && pass; j++) {
-			   if (b[j] % val != 0) {
-				   pass = false;
-			   }
-		   }
-		   
-		   // if pass is true mean 'val' is the factor
-		   if (pass)
-			   ret++;
-	   }
-	   
-	   return ret;
-   }
+	// https://www.hackerrank.com/challenges/between-two-sets/problem
+	// Between 2 Set
+	public static int getTotalX(int[] a, int[] b) {
+		int ret = 0;
+
+		int min = a[a.length - 1];
+		int max = b[b.length - 1];
+
+		// loop for every element in [min, max] with the increase step min
+		for (int val = min; val <= max; val += min) {
+			boolean pass = true;
+
+			// all elements of the first array are all factors of 'val'?
+			for (int j = 0; j < a.length && pass; j++) {
+				if (val % a[j] != 0) {
+					pass = false;
+					break;
+				}
+			}
+
+			// 'val' is a factor of all elements of t he second array?
+			for (int j = 0; j < b.length && pass; j++) {
+				if (b[j] % val != 0) {
+					pass = false;
+				}
+			}
+
+			// if pass is true mean 'val' is the factor
+			if (pass)
+				ret++;
+		}
+
+		return ret;
+	}
+   
+    // https://www.hackerrank.com/challenges/cut-the-sticks/problem
+    public static int[] cutTheSticks(int[] arr) {
+    	ArrayList<Integer> tmpRet = new ArrayList<Integer>();
+    	// find the minimum value
+    	int count = 0;
+    	do {
+    		count = 0;
+	    	int minVal = 0;
+	    	for (int i = 0; i < arr.length; i++) {
+	    		if (arr[i] > 0 && (minVal == 0 || minVal > arr[i])) {
+	    			minVal = arr[i];
+	    		}
+	    	}
+	    	
+	    	if (minVal > 0) {
+		    	for (int i = 0; i < arr.length; i++) {
+		    		if (arr[i] != 0) {
+		    			count++;
+		    			arr[i] -= minVal;
+		    		}
+		    	}
+		    	tmpRet.add(count);
+	    	}
+    	} while (count > 0);
+    	
+    	// convert array list to primitive int array
+    	int[] ret = new int[tmpRet.size()];
+    	for (int i = 0; i < tmpRet.size(); i++) {
+    		ret[i] = tmpRet.get(i);
+    	}
+    	return ret;
+    }
 }
