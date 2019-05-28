@@ -14,6 +14,11 @@ public class main {
 		Solution sol = Solution.getInstance();
 		sol.permute("ABCD");
 		
+		for (int i = 0; i <= 5; i++) {
+			System.out.println("" + Utils.leftShift(1, i));
+		}
+		
+		
 		// TODO Auto-generated method stub
 
 //		Solution instance = Solution.getInstance();
