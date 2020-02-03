@@ -10,7 +10,7 @@ public class WeatherStation {
 //		CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(weatherData);
 //		StatisticsDisplay staticticsDisplay = new StatisticsDisplay(weatherData);
 //		ForecastDisplay forecastDisplay = new ForecastDisplay(weatherData);
-		
+//		HeatIndexDisplay heatIndexDisplay = new HeatIndexDisplay(weatherData);
 
 		// these classes using build-in observer pattern in Java
 		WeatherData2 weatherData = new WeatherData2();
