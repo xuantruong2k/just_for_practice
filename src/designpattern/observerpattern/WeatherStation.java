@@ -17,8 +17,9 @@ public class WeatherStation {
 		CurrentConditionsDisplay2 currentDisplay = new CurrentConditionsDisplay2(weatherData);
 		StatisticsDisplay2 staticticsDisplay = new StatisticsDisplay2(weatherData);
 		ForecastDisplay2 forecastDisplay = new ForecastDisplay2(weatherData);
-		
-		
+		HeatIndexDisplay2 heatIndexDisplay = new HeatIndexDisplay2(weatherData);
+
+
 		// set pressure - temperature - humidity
 		weatherData.setMeasurements(30.4f, 80, 65);
 		weatherData.setMeasurements(29.8f, 60, 65);
