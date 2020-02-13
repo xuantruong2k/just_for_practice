@@ -1,4 +1,4 @@
-package designpattern.observerpattern;
+package designpattern.observer;
 
 public class StatisticsDisplay implements Observer, DisplayElement {
 
