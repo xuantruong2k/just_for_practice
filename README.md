@@ -6,6 +6,7 @@ Add custom annotation tutorial.
 
 - Now I know the basic of annotaion in Java
 - The example source code is at: /src/teddy/customannotations/
+- I follow the tutorial here: https://www.baeldung.com/java-custom-annotation
 
 ## First Description
 
