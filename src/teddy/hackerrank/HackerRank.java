@@ -1,12 +1,9 @@
 package teddy.hackerrank;
 
-import java.io.*;
-import java.math.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
-
-import teddy.test.Utils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 public class HackerRank {
 
@@ -29,12 +26,12 @@ public class HackerRank {
 		// }
 		// System.out.println(evenStr + " " + oddStr);
 		// }
-		
+
 //		String s = "welcometojava";
 //		int k = 3;
 //		String str = getSmallestAndLargest(s, k);
 //		System.out.println(str);
-		
+
 		int[] arr = {5, 4, 4, 2, 2, 8};
 		int[] ret = cutTheSticks(arr);
 	}
@@ -42,7 +39,7 @@ public class HackerRank {
     public static String getSmallestAndLargest(String s, int k) {
         String smallest = "";
         String largest = "";
-        
+
         // Complete the function
         // 'smallest' must be the lexicographically smallest substring of length 'k'
         // 'largest' must be the lexicographically largest substring of length 'k'
@@ -60,13 +57,13 @@ public class HackerRank {
         	if (compareString(largest, sub.get(i)) == -1) // largest < sub.get(i)
         		largest = sub.get(i);
         }
-        
+
         return smallest + "\n" + largest;
     }
-    
+
     public static int compareString(String s1, String s2) {
     	int result = 0; // equal
-    	
+
     	int len1 = s1.length();
     	int len2 = s2.length();
     	for (int i = 0; i < len1 && i < len2; i++) {
@@ -76,26 +73,26 @@ public class HackerRank {
     		} else if (s1.charAt(i) > s2.charAt(i)) {
     			result = 1; // s1 > s2 in Lexicographical Order
     			break;
-    		}    			
+    		}
     	}
-    	
+
     	// if goes here, means all characters in s1 and s2 are the same
     	// so check the length of s1 & s2
-    	if (len1 < len2) 
+    	if (len1 < len2)
     		result = -1;
     	else if (len1 > len2)
     		result = 1;
-    	
+
     	return result;
     }
-     
+
     // https://www.hackerrank.com/challenges/2d-array/problem
     // 2D array - find the maximum 'hourglass' sum
     public static int findMaxiumHourglass(int[][] arr) {
     	int maxSum = Integer.MIN_VALUE;
     	for (int i = 0; i < arr.length - 2; i++) {
     		for (int j = 0; j < arr[i].length - 2; j++ ) {
-    			int sum = 0;    			
+    			int sum = 0;
     			// first line
     			sum += arr[i][j];
     			sum += arr[i][j+1];
@@ -106,7 +103,7 @@ public class HackerRank {
     			sum += arr[i+2][j];
     			sum += arr[i+2][j+1];
     			sum += arr[i+2][j+2];
-    			
+
     			if (sum > maxSum) {
     				maxSum = sum;
     			}
@@ -114,7 +111,7 @@ public class HackerRank {
     	}
     	return maxSum;
     }
-    
+
 	// https://www.hackerrank.com/challenges/between-two-sets/problem
 	// Between 2 Set
 	public static int getTotalX(int[] a, int[] b) {
@@ -149,7 +146,7 @@ public class HackerRank {
 
 		return ret;
 	}
-   
+
     // https://www.hackerrank.com/challenges/cut-the-sticks/problem
     public static int[] cutTheSticks(int[] arr) {
     	ArrayList<Integer> tmpRet = new ArrayList<Integer>();
@@ -163,7 +160,7 @@ public class HackerRank {
 	    			minVal = arr[i];
 	    		}
 	    	}
-	    	
+
 	    	if (minVal > 0) {
 		    	for (int i = 0; i < arr.length; i++) {
 		    		if (arr[i] != 0) {
@@ -174,7 +171,7 @@ public class HackerRank {
 		    	tmpRet.add(count);
 	    	}
     	} while (count > 0);
-    	
+
     	// convert array list to primitive int array
     	int[] ret = new int[tmpRet.size()];
     	for (int i = 0; i < tmpRet.size(); i++) {
@@ -182,4 +179,80 @@ public class HackerRank {
     	}
     	return ret;
     }
+
+//    1. Progress the Problem
+//
+//    **Input**
+//
+//    + an array of strings to search
+//    + queries : an array of query strings
+//
+//    **Output**
+//
+//    + an integer array occurs for each queries
+//
+//    **explicit**:
+//
+//    + each string has 1 ~ 20 characters
+//    + string must be equal, not include -> string must have the same length
+//
+//    -----
+//    2. Examples / Test Case
+//
+//    2.1 two examples at hackerrank
+//
+//    -----
+//    3. Data structure
+//
+//    **Solution 1:**
+//
+//    + using an array to store the output
+//    + for each query, iterate through the strings array to find out how many occurance
+//
+//    -> Complexibiity: O(n*m)
+//
+//    Quiz: is there any better solution?
+//    Using a map <key, value>?
+//
+//    **Solution 2:**
+//    + convert strings array -> map
+//    + iterate through the queries, for each query, how many occurance in the map?
+//
+//    -> Complexibiity: O(1)
+//
+//    -----
+//    4. Algorithm
+//    HashMap<String, Integer> map = new HashMap<String, Integer>();
+//
+//    -----
+//    5. Code with intent
+
+	// https://www.hackerrank.com/challenges/sparse-arrays/problem
+	static int[] matchingStrings(String[] strings, String[] queries) {
+		int[] results = new int[queries.length];
+
+		// generate hash map
+		HashMap<String, Integer> strHashMap = new HashMap<String, Integer>();
+		for (int i = 0; i < strings.length; i++) {
+			String key = strings[i];
+			if (strHashMap.containsKey(key)) {
+				strHashMap.put(key, strHashMap.get(key) + 1);
+			} else { // not exist in hashmap
+				strHashMap.put(key, 1);
+			}
+		}
+
+		// iterate through queries
+		for (int i = 0; i < queries.length; i++) {
+			String key = queries[i];
+			Integer value = strHashMap.get(key);
+			if (value == null)
+				results[i] = 0;
+			else
+				results[i] = value.intValue();
+		}
+
+		return results;
+
+	}
 }
