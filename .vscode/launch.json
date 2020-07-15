@@ -1,0 +1,63 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug (Launch) - Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-StarbuzzCoffee<just_for_practice>",
+      "request": "launch",
+      "mainClass": "designpattern.decorator.StarbuzzCoffee",
+      "projectName": "just_for_practice"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-WeatherStation<just_for_practice>",
+      "request": "launch",
+      "mainClass": "designpattern.observer.WeatherStation",
+      "projectName": "just_for_practice"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-MiniDuckSimulator<just_for_practice>",
+      "request": "launch",
+      "mainClass": "designpattern.strategy.MiniDuckSimulator",
+      "projectName": "just_for_practice"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-MainClass<just_for_practice>",
+      "request": "launch",
+      "mainClass": "teddy.customannotations.MainClass",
+      "projectName": "just_for_practice"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-HackerRank<just_for_practice>",
+      "request": "launch",
+      "mainClass": "teddy.hackerrank.HackerRank",
+      "projectName": "just_for_practice"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ReadAndWriteFile<just_for_practice>",
+      "request": "launch",
+      "mainClass": "teddy.test.ReadAndWriteFile",
+      "projectName": "just_for_practice"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-main<just_for_practice>",
+      "request": "launch",
+      "mainClass": "teddy.test.main",
+      "projectName": "just_for_practice"
+    }
+  ]
+}

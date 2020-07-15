@@ -254,5 +254,45 @@ public class HackerRank {
 
 		return results;
 
-	}
+  }
+
+  class SinglyLinkedListNode {
+    SinglyLinkedListNode next;
+    int data;
+  }
+
+  static SinglyLinkedListNode mergeLists(SinglyLinkedListNode headA, SinglyLinkedListNode headB) {
+    if (headA == null)
+      return headB;
+
+    if (headB == null)
+      return headA;
+
+    // ensure the head 1 is starts with smaller number than head 2
+    if (headA.data > headB.data) {
+      SinglyLinkedListNode tmp = headB;
+      headB = headA;
+      headA = tmp;
+    }
+
+    SinglyLinkedListNode listHead = headA;
+
+    while (headB != null) {
+      // iterate through nodes in list A until the next node
+      // has data bigger than data at the current node in list B
+      while (headA.next != null && headB.data > headA.next.data) {
+        headA = headA.next;
+      }
+
+      // insert current node in list 2 into list 1
+      SinglyLinkedListNode nextB = headB.next;
+      headB.next = headA.next;
+      headA.next = headB;
+      headB = nextB;
+    }
+
+
+    return listHead;
+
+  }
 }
