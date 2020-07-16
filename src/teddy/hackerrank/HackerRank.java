@@ -199,7 +199,7 @@ public class HackerRank {
 //    -----
 //    2. Examples / Test Case
 //
-//    2.1 two examples at hackerrank
+//    2.1 two examples at hacker rank
 //
 //    -----
 //    3. Data structure
@@ -207,18 +207,18 @@ public class HackerRank {
 //    **Solution 1:**
 //
 //    + using an array to store the output
-//    + for each query, iterate through the strings array to find out how many occurance
+//    + for each query, iterate through the strings array to find out how many occurrences
 //
-//    -> Complexibiity: O(n*m)
+//    -> Complexity: O(n*m)
 //
 //    Quiz: is there any better solution?
 //    Using a map <key, value>?
 //
 //    **Solution 2:**
 //    + convert strings array -> map
-//    + iterate through the queries, for each query, how many occurance in the map?
+//    + iterate through the queries, for each query, how many occurrences in the map?
 //
-//    -> Complexibiity: O(1)
+//    -> Complexity: O(1)
 //
 //    -----
 //    4. Algorithm
@@ -227,9 +227,16 @@ public class HackerRank {
 //    -----
 //    5. Code with intent
 
-	// https://www.hackerrank.com/challenges/sparse-arrays/problem
+	/**
+	 *
+	 * https://www.hackerrank.com/challenges/sparse-arrays/problem
+	 *
+	 * @param strings
+	 * @param queries
+	 * @return
+	 */
 	static int[] matchingStrings(String[] strings, String[] queries) {
-		int[] results = new int[queries.length];
+        int[] results = new int[queries.length];
 
 		// generate hash map
 		HashMap<String, Integer> strHashMap = new HashMap<String, Integer>();
@@ -237,7 +244,7 @@ public class HackerRank {
 			String key = strings[i];
 			if (strHashMap.containsKey(key)) {
 				strHashMap.put(key, strHashMap.get(key) + 1);
-			} else { // not exist in hashmap
+			} else { // not exist in hash map
 				strHashMap.put(key, 1);
 			}
 		}
@@ -255,4 +262,130 @@ public class HackerRank {
 		return results;
 
 	}
+
+	/**
+	 * Linked list
+	 *
+	 * @author nguyen.truong
+	 *
+	 */
+	class SinglyLinkedListNode {
+		SinglyLinkedListNode next;
+		int data;
+	}
+
+	class DoublyLinkedListNode {
+		DoublyLinkedListNode next;
+		DoublyLinkedListNode prev;
+		int data;
+	}
+
+	/**
+	 * https://www.hackerrank.com/challenges/compare-two-linked-lists/problem
+	 *
+	 * @param head1
+	 * @param head2
+	 * @return true both linked lists are same, otherwise return false
+	 */
+	static boolean compareLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+
+		while (head1 != null) {
+			if (head2 == null) // head1 is longer than head2
+				return false;
+
+			if (head1.data != head2.data) // difference in data
+				return false;
+
+			head1 = head1.next;
+			head2 = head2.next;
+		}
+		if (head2 != null) // head1 is shorter than head2
+			return false;
+
+		return true; // equal
+
+	}
+
+	/**
+	 * https://www.hackerrank.com/challenges/get-the-value-of-the-node-at-a-specific-position-from-the-tail/
+	 *
+	 * @param head
+	 * @param positionFromTail
+	 * @return
+	 */
+	static int getNodeFromTail(SinglyLinkedListNode head, int positionFromTail) {
+
+		// solution 1: using an array
+//		ArrayList<Integer> valueArr = new ArrayList<Integer>();
+//
+//		while (head != null) {
+//			valueArr.add(head.data);
+//			head = head.next;
+//		}
+//
+//		return valueArr.get(valueArr.size() - positionFromTail - 1);
+
+		// solution 2: using 2 node
+		SinglyLinkedListNode current = head;
+		SinglyLinkedListNode fromTail = head;
+		int idx = 0;
+
+		while (current != null) {
+			current = current.next;
+			if (idx++ > positionFromTail) {
+				fromTail = fromTail.next;
+			}
+		}
+
+		return fromTail.data;
+	}
+
+	/**
+	 * https://www.hackerrank.com/challenges/delete-duplicate-value-nodes-from-a-sorted-linked-list/problem
+	 *
+	 * @param head
+	 * @return
+	 */
+	static SinglyLinkedListNode removeDuplicates(SinglyLinkedListNode head) {
+		SinglyLinkedListNode current = head;
+		SinglyLinkedListNode next;
+
+		while (current != null) {
+
+			next = current.next;
+			if (next != null && next.data == current.data) {
+				// delete the next node, which is has duplicate data
+				current.next = next.next;
+				next.next = null;
+			} else {
+				current = current.next;
+			}
+		}
+
+		return head;
+	}
+
+	/**
+	 * https://www.hackerrank.com/challenges/merge-two-sorted-linked-lists/problem?h_r=next-challenge&h_v=legacy
+	 *
+	 * @param head1
+	 * @param head2
+	 * @return
+	 */
+	static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+		SinglyLinkedListNode head = head1;
+
+		return head;
+	}
+
+	/**
+	 * https://www.hackerrank.com/challenges/reverse-a-doubly-linked-list/problem
+	 *
+	 * @param head
+	 * @return
+	 */
+	static DoublyLinkedListNode reverse(DoublyLinkedListNode head) {
+
+	}
+
 }
