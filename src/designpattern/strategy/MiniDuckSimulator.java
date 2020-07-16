@@ -2,8 +2,7 @@ package designpattern.strategy;
 
 public class MiniDuckSimulator {
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
+    public void run() {
 
         FlyBehavior cantFly = () -> System.out.println("I can't fly");
         QuackBehavior squeak = () -> System.out.println("Squeak");

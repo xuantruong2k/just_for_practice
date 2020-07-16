@@ -2,9 +2,7 @@ package designpattern.decorator;
 
 public class StarbuzzCoffee {
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
+    public void run() {
 
         Beverage beverage = new Espresso();
         System.out.println(beverage.getDescription() + " $" + beverage.cost());
