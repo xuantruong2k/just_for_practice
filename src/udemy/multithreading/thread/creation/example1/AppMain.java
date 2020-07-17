@@ -1,10 +1,28 @@
-package udemy.multithreading.threadcreation;
+package udemy.multithreading.thread.creation.example1;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class AppMain {
 
     public static void main(String[] args) {
 //        AppMain.run1();
-        AppMain.run2();
+//        AppMain.run2();
+//        Thread thread = new NewThread();
+//        thread.start();
+
+        Random random = new Random();
+        Vault vault = new Vault(random.nextInt(Vault.MAX_PASSWORD));
+
+        List<Thread> threads = new ArrayList<Thread>();
+        threads.add(new AscendingHackerThread(vault));
+        threads.add(new DescendingHackerThread(vault));
+        threads.add(new PoliceThread());
+
+        for (Thread thread : threads) {
+            thread.start();
+        }
     }
 
     /**
@@ -51,4 +69,13 @@ public class AppMain {
 
         thread.start();
     }
+
+    public static class NewThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println("Hello from thread: " + this.getName());
+        }
+    }
+
+
 }
