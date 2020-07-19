@@ -9,14 +9,10 @@ public class ComplexCalculation {
 
     public BigInteger calculateResult(BigInteger base1, BigInteger power1, BigInteger base2, BigInteger power2) {
         BigInteger result = BigInteger.ZERO;
-        /*
-            Calculate result = ( base1 ^ power1 ) + (base2 ^ power2).
-            Where each calculation in (..) is calculated on a different thread
-        */
-
         PowerCalculatingThread thread1 = new PowerCalculatingThread(base1, power1);
         PowerCalculatingThread thread2 = new PowerCalculatingThread(base2, power2);
 
+        // setDeamon need to be set before start thread
         thread1.setDaemon(true);
         thread2.setDaemon(true);
         thread1.start();
