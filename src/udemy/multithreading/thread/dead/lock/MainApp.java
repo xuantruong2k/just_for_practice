@@ -1,4 +1,4 @@
-package dead.lock;
+package udemy.multithreading.thread.dead.lock;
 
 import java.util.Random;
 
