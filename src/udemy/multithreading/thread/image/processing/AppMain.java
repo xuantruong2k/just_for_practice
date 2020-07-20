@@ -45,10 +45,21 @@ public class AppMain {
         System.out.println("Image processing time: " + String.valueOf(endTime - startTime));
     }
 
+    /**
+     * Recolor image on single thread
+     * @param originalImage
+     * @param resultImage
+     */
     public static void recolorSingleThread(BufferedImage originalImage, BufferedImage resultImage) {
         recolorImage(originalImage, resultImage, 0, 0, originalImage.getWidth(), originalImage.getHeight());
     }
 
+    /**
+     * Re-color image using multi threads
+     * @param originalImage
+     * @param resultImage
+     * @param numberOfThreads the number of thread
+     */
     public static void recolorMultiThread(BufferedImage originalImage, BufferedImage resultImage, int numberOfThreads) {
         List<Thread> threads = new ArrayList<>();
         int width = originalImage.getWidth();
@@ -81,6 +92,15 @@ public class AppMain {
         }
     }
 
+    /**
+     * Re-color the image
+     * @param originalImage
+     * @param resultImage
+     * @param leftCorner
+     * @param topCorner
+     * @param width
+     * @param height
+     */
     public static void recolorImage(BufferedImage originalImage, BufferedImage resultImage, int leftCorner, int topCorner, int width, int height) {
         for (int x = leftCorner; x < leftCorner + width && x < originalImage.getWidth(); x++) {
             for (int y = topCorner; y < topCorner + height && y < originalImage.getHeight(); y++) {
@@ -89,6 +109,13 @@ public class AppMain {
         }
     }
 
+    /**
+     * Re-color the pixel at coordinates (x, y) in original image to result image
+     * @param originalImage
+     * @param resultImage
+     * @param x
+     * @param y
+     */
     public static void recolorPixel(BufferedImage originalImage, BufferedImage resultImage, int x, int y) {
         int rgb = originalImage.getRGB(x, y);
         int red = getRed(rgb);
@@ -110,15 +137,36 @@ public class AppMain {
         setRGB(resultImage, x, y, newRGB);
     }
 
+    /**
+     * Set RGB value to coordinates (x, y) of image
+     * @param image
+     * @param x
+     * @param y
+     * @param rgb
+     */
     public static void setRGB(BufferedImage image, int x, int y, int rgb) {
         image.getRaster().setDataElements(x, y, image.getColorModel().getDataElements(rgb, null));
     }
 
+    /**
+     * Check is the RGB value is on the shape of gray?
+     * @param red
+     * @param green
+     * @param blue
+     * @return true: this RGB value is on shape of gray, otherwise false
+     */
     public static boolean isShapeOfGray(int red, int green, int blue) {
         int grayVal = 30;
         return Math.abs(red - green) < grayVal && Math.abs(red - blue) < grayVal && Math.abs(green - blue) < grayVal;
     }
 
+    /**
+     * create RGB value from 3 colors
+     * @param red
+     * @param green
+     * @param blue
+     * @return RGB value
+     */
     public static int createRGBFromColors(int red, int green, int blue) {
         int rgb = 0;
 
