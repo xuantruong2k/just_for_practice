@@ -1,5 +1,7 @@
 package udemy.multithreading.thread.data.sharing;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class AppMain {
 
     public static int MAX_ITEMS = 10000000;
@@ -53,26 +55,29 @@ public class AppMain {
     }
 
     private static class InventoryCounter {
-        private int items = 0;
+        private AtomicInteger items = new AtomicInteger(0);
 
         Object lock = new Object();
 
         public void increment() {
-            synchronized (lock) {
-                items++;
-            }
+            items.incrementAndGet();
+//            synchronized (lock) {
+//                items++;
+//            }
         }
 
         public void decrement() {
-            synchronized (lock) {
-                items--;
-            }
+            items.decrementAndGet();
+//            synchronized (lock) {
+//                items--;
+//            }
         }
 
         public int getItems() {
-            synchronized (lock) {
-                return items;
-            }
+            return items.get();
+//            synchronized (lock) {
+//                return items;
+//            }
         }
     }
 }
