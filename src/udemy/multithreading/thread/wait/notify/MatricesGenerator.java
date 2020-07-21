@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.StringJoiner;
 
+/**
+ * Generate a matrix
+ */
 public class MatricesGenerator {
     private static final String OUTPUT_FILE = "./resources/udemy/multithreading/matrices";
     private static final int N = 10;
@@ -14,11 +17,16 @@ public class MatricesGenerator {
     public static void main(String[] args) throws IOException {
         File file = new File(OUTPUT_FILE);
         FileWriter fileWriter = new FileWriter(file);
-        createMatrices(fileWriter);
-        fileWriter.flush();
+        createMatrices(fileWriter); // create and write the matrix to file
+        fileWriter.flush(); // flush and close file to make sure the file is ok to system
         fileWriter.close();
     }
 
+    /**
+     * Create a random row of a matrix
+     * @param random
+     * @return
+     */
     private static float[] createRow(Random random) {
         float[] row = new float[N];
         for (int i = 0; i < N; i++) {
@@ -27,6 +35,11 @@ public class MatricesGenerator {
         return row;
     }
 
+    /**
+     * Create a random square matrix
+     * @param random
+     * @return
+     */
     private static float[][] createMatrix(Random random) {
         float matrix[][] = new float[N][N];
         for (int i = 0; i < N; i++) {
@@ -35,6 +48,12 @@ public class MatricesGenerator {
         return matrix;
     }
 
+    /**
+     * Save matrix to file
+     * @param fileWriter
+     * @param matrix
+     * @throws IOException
+     */
     private static void saveMatrixToFile(FileWriter fileWriter, float[][] matrix) throws IOException {
         for (int r = 0; r < N; r++) {
             StringJoiner stringJoiner = new StringJoiner(", ");
@@ -42,11 +61,16 @@ public class MatricesGenerator {
                 stringJoiner.add(String.format("%.2f", matrix[r][c]));
             }
             fileWriter.write(stringJoiner.toString());
-            fileWriter.write("\n");
+            fileWriter.write('\n');
         }
-        fileWriter.write("\n");
+        fileWriter.write('\n');
     }
 
+    /**
+     * Create and save the square matrix
+     * @param fileWriter
+     * @throws IOException
+     */
     private static void createMatrices(FileWriter fileWriter) throws IOException {
         Random random = new Random();
         for (int i = 0; i < NUMBER_OF_MATRIX_PAIRS * 2; i++) {

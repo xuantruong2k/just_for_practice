@@ -27,6 +27,10 @@ public class AppMain {
         matricesMultiplierConsumer.start();
     }
 
+    /**
+     * Matrices Multiplier Consumer
+     * This class will multiply the matrices then write the matrices result to file
+     */
     private static class MatricesMultiplierConsumer extends Thread {
         private ThreadSafeQueue queue;
         private FileWriter fileWriter;
@@ -43,9 +47,9 @@ public class AppMain {
                     stringJoiner.add(String.format("%.2f", matrix[r][c]));
                 }
                 fileWriter.write(stringJoiner.toString());
-                fileWriter.write("\n");
+                fileWriter.write('\n');
             }
-            fileWriter.write("\n");
+            fileWriter.write('\n');
         }
 
         @Override
@@ -87,6 +91,10 @@ public class AppMain {
         }
     }
 
+    /**
+     * Matrices Reader Producer
+     * This class will read the matrices in file as input
+     */
     private static class MatricesReaderProducer extends Thread {
         private Scanner scanner;
         private ThreadSafeQueue queue;
@@ -132,6 +140,9 @@ public class AppMain {
         }
     }
 
+    /**
+     * Thread safe queue using wait, notify, notifyAll
+     */
     private static class ThreadSafeQueue {
         private Queue<MatricesPair> queue = new LinkedList<>();
         private boolean isEmpty = true;
