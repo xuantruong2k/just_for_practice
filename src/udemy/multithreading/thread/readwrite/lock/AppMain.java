@@ -11,7 +11,7 @@ public class AppMain {
         There are total 8 threads: 1 writer thread & 7 reader threads.
         The ReentrantReadWriteLock only takes advantage when there
          are many reader thread over writer thread.
-        -> If many writer thread over reader thread?
+         -> If many writer thread over reader thread?
 
         + using ReentrantLock, took 3408 ms
         + using ReentrantReadWriteLock, took 745 ms
