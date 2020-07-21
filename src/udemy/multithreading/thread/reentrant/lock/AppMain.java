@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MainApp {
+public class AppMain {
 
     public static class PricesContainer {
         private Lock lockObject = new ReentrantLock();

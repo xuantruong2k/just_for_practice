@@ -2,7 +2,7 @@ package udemy.multithreading.thread.dead.lock;
 
 import java.util.Random;
 
-public class MainApp {
+public class AppMain {
 
     public static void main(String[] args) {
         Intersection intersection = new Intersection();
