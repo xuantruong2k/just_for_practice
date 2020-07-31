@@ -4,8 +4,18 @@ public class MiniDuckSimulator {
 
     public void run() {
 
-        FlyBehavior cantFly = () -> System.out.println("I can't fly");
-        QuackBehavior squeak = () -> System.out.println("Squeak");
+        FlyBehavior cantFly = new FlyBehavior() {
+            @Override
+            public void fly() {
+                System.out.println("I can't fly");
+            }
+        };
+        QuackBehavior squeak = new QuackBehavior() {
+            @Override
+            public void quack() {
+                System.out.println("Squeak");
+            }
+        };
 
         MallardDuck mallard = new MallardDuck();
         RedheadDuck redhead = new RedheadDuck();
