@@ -1,9 +1,6 @@
 package teddy.hackerrank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import teddy.hackerrank.linkedlist.DoublyLinkedListNode;
 import teddy.hackerrank.linkedlist.SinglyLinkedListNode;
@@ -534,6 +531,66 @@ public class HackerRank {
         }
 
         return -1; // there is no merge point
+    }
+
+
+    /**
+     * Examples:
+     *   inputs = [5, 8, 3, 2, 0, 7, 9, -1, 13]
+     *   reference = 8
+     *   --> pair == 8 => [5, 3], [8, 0], [9, -1]
+     *   --> result = 3 pairs
+     * @param inputs
+     * @param reference
+     * @return
+     */
+    public static int countPairEqualToInt(int[] inputs, int reference) {
+        int count = 0;
+
+        // solution 1: brute force
+        // complexity = O(n2)
+//        for (int i = 0; i < inputs.length-1; i++) {
+//            for (int j = i + 1; j < inputs.length; j++) {
+//                if (inputs[i] + inputs[j] == reference)
+//                    count++;
+//            }
+//        }
+
+        // solution 2: using a map
+        // complexity = 0(n)
+        // require more space in memory
+        Map<Integer, Integer> appearance = new HashMap<>();
+        for (int i = 0; i < inputs.length; i++) {
+            int missing = reference - inputs[i];
+            if (appearance.containsKey(missing)) {
+                count++;
+            } else {
+                appearance.put(inputs[i], 1);
+            }
+        }
+
+        // solution 3:
+//        for (int i = 0; i < inputs.length; i++) {
+//
+//        }
+
+        return count;
+    }
+
+
+    // Complete the hackerrankInString function below.
+    public static String hackerrankInString(String s) {
+        String hackerRank = "hackerrank";
+        int idx = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == hackerRank.charAt(idx)) {
+                if (idx == hackerRank.length() - 1)
+                    return "YES";
+                idx++;
+            }
+        }
+
+        return "NO";
     }
 
 }
