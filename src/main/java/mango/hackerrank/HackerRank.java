@@ -571,14 +571,6 @@ public class HackerRank {
                 appearance.put(inputs[i], 1);
             }
         }
-        logger.info("countPairEqualToInt, count %d", count);
-
-        logger.debug("debug log");
-        logger.info("info log");
-        logger.warn("warn log");
-        logger.error("error log");
-        logger.fatal("fatal log");
-
 
         // solution 3:
 //        for (int i = 0; i < inputs.length; i++) {
