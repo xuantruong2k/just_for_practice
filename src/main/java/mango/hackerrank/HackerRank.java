@@ -596,4 +596,72 @@ public class HackerRank {
         return "NO";
     }
 
+    /**
+     * https://www.hackerrank.com/challenges/two-arrays/problem
+     * @param k
+     * @param A
+     * @param B
+     * @return
+     */
+    public static String compareTwoArrays(int k, int[] A, int[] B) {
+        Arrays.sort(A);
+        Arrays.sort(B);
+        for (int i = 0, j = A.length - 1; i < A.length; i++, j--) {
+            if (A[i] + B[j] < k)
+                return "NO";
+        }
+        return "YES";
+    }
+
+    /**
+     * https://www.hackerrank.com/challenges/sherlock-and-array/problem
+     * @param arr
+     * @return
+     */
+    public static int balancedSum(int[] arr) {
+        int sum = 0;
+        Map<Integer, Integer> leftSum = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < arr.length; i++) {
+            leftSum.put(i, sum);
+            sum += arr[i];
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            int rightSum = sum - arr[i] - leftSum.get(i);
+            if (rightSum == leftSum.get(i))
+                return i;
+        }
+        return -1;
+    }
+
+    /**
+     * https://www.hackerrank.com/challenges/equality-in-a-array/problem
+     * @param arr
+     * @return
+     */
+    public static int equalizeArray(int[] arr) {
+        Map<Integer, Integer> equalMap = new HashMap<>();
+
+        // using map to store the equal count of each number
+        for (int i = 0; i < arr.length; i++) {
+            if (equalMap.containsKey(arr[i])) {
+                equalMap.put(arr[i], equalMap.get(arr[i]) + 1);
+            } else {
+                equalMap.put(arr[i], 1);
+            }
+        }
+
+        // find the max of equal count
+        int max = Integer.MIN_VALUE;
+        Iterator<Map.Entry<Integer, Integer>> iterator = equalMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Integer> entry = iterator.next();
+            if (max < entry.getValue())
+                max = entry.getValue();
+        }
+
+        return arr.length - max;
+    }
+
 }
