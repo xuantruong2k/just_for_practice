@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import mango.hackerrank.HackerRank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HackerRankTest {
 
 //    @Test
@@ -49,12 +52,25 @@ public class HackerRankTest {
 //        assertEquals(expect, result);
 //    }
 
-    @Test
-    public void testBalancedSum() {
-        int[] arr = {2, 0, 0, 0};
+//    @Test
+//    public void testBalancedSum() {
+//        int[] arr = {2, 0, 0, 0};
+//
+//        int expect = 0;
+//        int result = HackerRank.balancedSum(arr);
+//        assertEquals(expect, result);
+//    }
 
-        int expect = 0;
-        int result = HackerRank.balancedSum(arr);
+    @Test
+    public void testArrayToMaxNumber() {
+        List<String> arr = new ArrayList<>();
+        arr.add("3");
+        arr.add("9");
+        arr.add("30");
+        arr.add("33");
+
+        int expect = 933330;
+        int result = HackerRank.arrayToMaxNumber(arr);
         assertEquals(expect, result);
     }
 }
