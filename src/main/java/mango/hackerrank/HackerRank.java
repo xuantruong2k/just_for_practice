@@ -664,4 +664,75 @@ public class HackerRank {
         return arr.length - max;
     }
 
+    /**
+     * count the sub array of an array which the sum of triplet elements in sub array is less than integer k
+     * https://www.geeksforgeeks.org/count-triplets-with-sum-smaller-that-a-given-value/
+     * @param sum
+     * @param arr
+     * @return
+     */
+    private int countTriplet(int sum, int[] arr) {
+        int count = 0;
+        Arrays.sort(arr);
+
+        int len = arr.length;
+        for (int i = 0; i < len - 2; i++) {
+            int j = i + 1;
+            int k = len - 1;
+            while (j < k) {
+                if (arr[i] + arr[j] + arr[k] >= sum) {
+                    k--;
+                } else {
+                    count += (k - j);
+                    j++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    /**
+     *
+     * @param arr
+     * @return
+     */
+    public static int arrayToMaxNumber(List<String> arr) {
+//        Collections.sort(arr, new Comparator<String>() {
+//            @Override
+//            public int compare(String arg0, String arg1) {
+//                Integer a = Integer.parseInt(arg0 + arg1);
+//                Integer b = Integer.parseInt(arg1 + arg0);
+//                if (a < b) {
+//                    return -1;
+//                } else if (a > b) {
+//                    return 1;
+//                }
+//                return 0;
+//            }
+//        });
+
+        Collections.sort(arr, (arg0, arg1) -> {
+            Integer a = Integer.parseInt(arg0 + arg1);
+            Integer b = Integer.parseInt(arg1 + arg0);
+            if (a < b) {
+                return -1;
+            } else if (a > b) {
+                return 1;
+            }
+            return 0;
+        });
+
+        String result = "";
+        for (int i = arr.size() - 1; i >= 0; i--) {
+//        for (int i = 0; i < arr.size(); i++) {
+            result += arr.get(i);
+        }
+
+        if (result.equals(""))
+            return -1;
+
+        return Integer.parseInt(result);
+    }
+
 }
