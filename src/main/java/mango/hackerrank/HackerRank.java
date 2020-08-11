@@ -735,4 +735,80 @@ public class HackerRank {
         return Integer.parseInt(result);
     }
 
+    public static boolean checkPangram(String s) {
+
+        boolean isPangram = false;
+
+        int count = 0;
+        Map<Integer, Integer> charMap = new HashMap<Integer, Integer>();
+
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            char c = convertToLowerCase(s.charAt(i));
+            Integer ic = Integer.valueOf(c);
+            if (!charMap.containsKey(ic)) {
+                count++;
+                if (count == letterCount) {
+                    isPangram = true;
+                    break;
+                }
+                charMap.put(ic, 1);
+            }
+        }
+
+        return isPangram;
+    }
+
+    /**
+     * https://www.hackerrank.com/challenges/missing-numbers/problem
+     * @param arr
+     * @param brr
+     * @return
+     */
+    static int[] missingNumbers(int[] arr, int[] brr) {
+        Map<Integer, Integer> missingMap = new HashMap<>();
+        Map<Integer, Integer> originalMap = new HashMap<>();
+
+        // convert missing array to map
+        for (int i = 0; i < arr.length; i++) {
+            if (missingMap.containsKey(arr[i])) {
+                missingMap.put(arr[i], missingMap.get(arr[i]) + 1);
+            } else {
+                missingMap.put(arr[i], 1);
+            }
+        }
+
+        // convert original array to map
+        for (int i = 0; i < brr.length; i++) {
+            if (originalMap.containsKey(brr[i])) {
+                originalMap.put(brr[i], originalMap.get(brr[i]) + 1);
+            } else {
+                originalMap.put(brr[i], 1);
+            }
+        }
+
+        // loop to find out the missing number
+        Set<Integer> sortedSet = new TreeSet<>();
+        for (Map.Entry<Integer, Integer> entry : originalMap.entrySet()) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+
+            if (missingMap.containsKey(key)) {
+                if (missingMap.get(key) < value)
+                    sortedSet.add(key);
+            } else {
+                sortedSet.add(key);
+            }
+        }
+
+        // convert missing number to array
+        int[] missingArr = new int[sortedSet.size()];
+        int idx = 0;
+        for (Integer value : sortedSet) {
+            missingArr[idx] = value;
+            idx++;
+        }
+
+        return missingArr;
+    }
 }
