@@ -735,29 +735,29 @@ public class HackerRank {
         return Integer.parseInt(result);
     }
 
-    public static boolean checkPangram(String s) {
-
-        boolean isPangram = false;
-
-        int count = 0;
-        Map<Integer, Integer> charMap = new HashMap<Integer, Integer>();
-
-        int len = s.length();
-        for (int i = 0; i < len; i++) {
-            char c = convertToLowerCase(s.charAt(i));
-            Integer ic = Integer.valueOf(c);
-            if (!charMap.containsKey(ic)) {
-                count++;
-                if (count == letterCount) {
-                    isPangram = true;
-                    break;
-                }
-                charMap.put(ic, 1);
-            }
-        }
-
-        return isPangram;
-    }
+//    public static boolean checkPangram(String s) {
+//
+//        boolean isPangram = false;
+//
+//        int count = 0;
+//        Map<Integer, Integer> charMap = new HashMap<Integer, Integer>();
+//
+//        int len = s.length();
+//        for (int i = 0; i < len; i++) {
+//            char c = convertToLowerCase(s.charAt(i));
+//            Integer ic = Integer.valueOf(c);
+//            if (!charMap.containsKey(ic)) {
+//                count++;
+//                if (count == letterCount) {
+//                    isPangram = true;
+//                    break;
+//                }
+//                charMap.put(ic, 1);
+//            }
+//        }
+//
+//        return isPangram;
+//    }
 
     /**
      * https://www.hackerrank.com/challenges/missing-numbers/problem
@@ -810,5 +810,19 @@ public class HackerRank {
         }
 
         return missingArr;
+    }
+
+    public static boolean isSmartNumber(int num) {
+        int val = (int) Math.sqrt(num);
+
+        int factorCount = 1;
+        if (num > 1)
+            factorCount++;
+        for (int i = 2; i <= val; i++) {
+            if (num % i == 0)
+                factorCount++;
+        }
+
+        return (factorCount % 2 != 0);
     }
 }

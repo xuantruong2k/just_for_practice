@@ -2,16 +2,18 @@ package mango.others;
 
 import mango.others.thread.*;
 
+import java.util.*;
+
 public class main {
 
 
     public static void main(String[] args) {
-        Solution sol = Solution.getInstance();
-        sol.permute("ABCD");
-
-        for (int i = 0; i <= 5; i++) {
-            System.out.println("" + Utils.leftShift(1, i));
-        }
+//        Solution sol = Solution.getInstance();
+//        sol.permute("ABCD");
+//
+//        for (int i = 0; i <= 5; i++) {
+//            System.out.println("" + Utils.leftShift(1, i));
+//        }
 
 
         // TODO Auto-generated method stub
@@ -72,5 +74,6 @@ public class main {
 //        t4.start();
 //        t5.start();
 //        t6.start();
+
     }
 }
