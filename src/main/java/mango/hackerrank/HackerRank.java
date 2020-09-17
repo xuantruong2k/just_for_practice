@@ -812,6 +812,11 @@ public class HackerRank {
         return missingArr;
     }
 
+    /**
+     * https://www.hackerrank.com/challenges/smart-number/problem
+     * @param num
+     * @return
+     */
     public static boolean isSmartNumber(int num) {
         int val = (int) Math.sqrt(num);
 
@@ -824,5 +829,33 @@ public class HackerRank {
         }
 
         return (factorCount % 2 != 0);
+    }
+
+    /**
+     * https://www.hackerrank.com/challenges/reduced-string/problem
+     * @param s
+     * @return
+     */
+    public static String superReducedString(String s) {
+
+        int index = 0;
+        int len = s.length();
+        while (index < len - 1) {
+            if (s.charAt(index) == s.charAt(index + 1)) {
+                if (index + 2 < len)
+                    s = s.substring(0, index) + s.substring(index + 2);
+                else
+                    s = s.substring(0, index);
+                len = s.length();
+                index = (index - 1 < 0) ? 0 : index - 1;
+            } else {
+                index++;
+            }
+        }
+
+        if (s.length() == 0)
+            return "Empty String";
+
+        return s;
     }
 }

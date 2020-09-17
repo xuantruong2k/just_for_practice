@@ -61,16 +61,24 @@ public class HackerRankTest {
         assertEquals(expect, result);
     }
 
-    @Test
-    public void testArrayToMaxNumber() {
-        List<String> arr = new ArrayList<>();
-        arr.add("3");
-        arr.add("9");
-        arr.add("30");
-        arr.add("33");
+//    @Test
+//    public void testArrayToMaxNumber() {
+//        List<String> arr = new ArrayList<>();
+//        arr.add("3");
+//        arr.add("9");
+//        arr.add("30");
+//        arr.add("33");
+//
+//        int expect = 933330;
+//        int result = HackerRank.arrayToMaxNumber(arr);
+//        assertEquals(expect, result);
+//    }
 
-        int expect = 933330;
-        int result = HackerRank.arrayToMaxNumber(arr);
+    @Test
+    public void testSuperReducedString() {
+        String s = "baab";
+        String expect = "Empty String";
+        String result = HackerRank.superReducedString(s);
         assertEquals(expect, result);
     }
 
